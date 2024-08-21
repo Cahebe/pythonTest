@@ -1,0 +1,55 @@
+import numpy as np
+from sklearn.datasets import load_iris
+import matplotlib.pyplot as plt
+
+iris_data = load_iris()
+iris_features = iris_data['data']
+print(iris_features)
+
+print('-------------------------------------------------')
+print('------NP.PERCENTILE------')
+print(np.percentile(a=iris_features, q=10, axis=0))
+print('-------------------------------------------------')
+print(np.percentile(a=iris_features, q=25, axis=0))
+print('-------------------------------------------------')
+print(np.percentile(a=iris_features, q=50, axis=0))
+print('-------------------------------------------------')
+print('------NP.QUANTILE------')
+print(np.quantile(a=iris_features, q=0.1, axis=0))
+print('-------------------------------------------------')
+print(np.quantile(a=iris_features, q=0.25, axis=0))
+print('-------------------------------------------------')
+print(np.quantile(a=iris_features, q=0.5, axis=0))
+print('-------------------------------------------------')
+print('------NP.MEDIAN------')
+print(np.median(a=iris_features, axis=0))
+print('------NP.MEAN------')
+print(np.mean(a=iris_features, axis=0))
+print('-------------------------------------------------')
+print('------NP.STD/VAR------')
+iris_std = np.std(a=iris_features, axis=0)
+print(iris_std)
+print('-------------------------------------------------')
+iris_var = np.var(a=iris_features, axis=0)
+print(iris_var)
+print('-------------------------------------------------')
+print('------NP.ALLCLOSE------')
+print(np.allclose(np.power(iris_std, 2), iris_var))
+print('-------------------------------------------------')
+print('------NP.COV/CORRCOEF------')
+print(np.cov(iris_features.T))  # transposta
+print('-------------------------------------------------')
+print(np.corrcoef(iris_features.T))  # transposta
+print('-------------------------------------------------')
+print('------NP.HISTOGRAM------')
+hist, bin_edges = np.histogram(a=iris_features[:, 2], bins=5)
+print(hist, bin_edges)
+
+plt.hist(iris_features[:, 2], bins=5)
+plt.xlabel('Comprimento da Pétala')
+plt.ylabel('Frequência')
+plt.title('Histograma do Comprimento da Pétala')
+# plt.show() # tirar comentário para ver o histograma
+print('-------------------------------------------------')
+print('------NP.BINCOUNT------')
+print(np.bincount(iris_features[:, 2].astype(int)))
